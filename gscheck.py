@@ -9,9 +9,6 @@ This class uses the GeoServer API to implement a number of methods.
 
 import configparser
 import urllib.parse
-import json
-from csv import DictWriter
-from json.decoder import JSONDecodeError
 
 import requests
 

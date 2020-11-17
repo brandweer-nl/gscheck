@@ -78,7 +78,7 @@ for wp in wplist:
                 for x, y in i.items():
                     if x == "name":
                         tempdict["name_style"] = y
-                        allstyles.append(copy.deepcopy(tempdict))
+                        allstyles.append(tempdict.copy())
                         stylecounter += 1
                         print("Processing workspace/style {}: {}".format(stylecounter, y))
     elif len(tempstyle["styles"]) == 0:
