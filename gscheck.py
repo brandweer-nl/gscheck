@@ -9,7 +9,6 @@ This class uses the GeoServer API to implement a number of methods.
 
 import configparser
 import urllib.parse
-
 import requests
 
 __author__ = "Guido Legemaate"

@@ -14,7 +14,6 @@ ALLSTYLES
 """
 
 import gscheck
-import copy
 from csv import DictWriter
 
 # create GSCheck object
