@@ -18,7 +18,7 @@ import gscheck
 from csv import DictWriter
 
 # create GSCheck object
-brwaa = gscheck.GSCheck("brwaa")
+brwaa = gscheck.GSCheck("brwaa_prod")
 
 # ALLSTYLES algorithm - part 1
 
