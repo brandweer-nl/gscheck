@@ -13,7 +13,7 @@ import gscheck
 
 from csv import DictWriter
 
-brwaa = gscheck.GSCheck("brwaa")
+brwaa = gscheck.GSCheck("brwaa_prod")
 
 layers = brwaa.retrieve("layers")[1]
 styles = brwaa.retrieve("styles")[1]

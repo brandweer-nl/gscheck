@@ -9,7 +9,8 @@ Scripted test om gscheck aan de tand te voelen over styles (ook in workspaces).
 
 ALLSTYLES
 1. alle styles uit de hoofdstructuur ophalen
-2. alle styles uit alle workspaces ophalen
+2. alle workspaces ophalen
+3. alle styles uit alle workspaces ophalen
 
 """
 
@@ -60,6 +61,8 @@ wplist = [y for k, v in workspaces["workspaces"].items()
           for i in v
           for x, y in i.items() if x == "name"]
 
+# ALLSTYLES algorithm - part 3
+
 # now go into the workspaces themselves to fetch the styles
 wpcounter = 0
 stylecounter = 0
@@ -84,6 +87,6 @@ for wp in wplist:
         print("Workspace has remote or no styles attached: {}".format(wp))
         
 with open("./output/styles-layers.csv","w") as outfile:
-    writer = DictWriter(outfile, ("name_workspace","name_style"))
+    writer = DictWriter(outfile, ("name_style", "name_workspace"))
     writer.writeheader()
     writer.writerows(allstyles)
