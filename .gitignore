@@ -132,3 +132,4 @@ dmypy.json
 .vscode/
 output/*.csv
 config.ini
+todo.txt
