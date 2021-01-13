@@ -10,8 +10,7 @@ Scripted test om gscheck aan de tand te voelen over default styles bij layers.
 """
 
 import gscheck
-
-from csv import DictWriter
+import pandas as pd
 
 brwaa = gscheck.GSCheck("brwaa_prod")
 
@@ -27,11 +26,10 @@ for k, v in layers["layers"].items():
             if x == "name":
                 tempdict = {}
                 tempdict["name_layer"] = y
-                #global templayer # for debugging
                 templayer = brwaa.retrieve("layers", "{}".format(y))[1]
                 for k, v in templayer.items():
                     if k == "error":
-                        print("Found error!")
+                        brwaa.log("Found error!")
                         tempdict["type_layer"] = "ERROR"
                         tempdict["name_defaultstyle"] = v
                     elif k == "layer":
@@ -44,9 +42,19 @@ for k, v in layers["layers"].items():
                                 tempdict["type_layer"] = v
                     layerstyle.append(tempdict)
                     counter += 1
-                    print("Processing layer {}".format(counter))
+                    brwaa.log("Processing layer {}".format(counter))
 
-with open("./output/layers-defaultstyles.csv","w") as outfile:
-    writer = DictWriter(outfile, ("name_layer","type_layer","name_defaultstyle"))
-    writer.writeheader()
-    writer.writerows(layerstyle)
+writer = pd.ExcelWriter("./output/brwaa_layers-defaultstyles.xlsx")
+dflayer = pd.DataFrame(layerstyle)
+dflayer.to_excel(writer,
+                        sheet_name = "layers_defaultstyles",
+                        header = ["name_layer",
+                                  "type_layer",
+                                  "name_defaultstyle"],
+                        index = False)
+dflog = pd.DataFrame(brwaa.logdata)
+dflog.to_excel(writer,
+                       sheet_name = "log_messages",
+                       header = ["log message"],
+                       index = False)
+writer.save()
